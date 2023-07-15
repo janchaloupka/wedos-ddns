@@ -9,10 +9,13 @@ Script finds userfull in case you internet provider change your IP adress in ran
 MANUAL
 1)Set up A domain
 2)Set up your WEDOS API (Czech): http://kb.wedos.com/wapi/aktivace-nastaveni.html
-3)Set your credentials few lines bellow.
+3)Set container variables as specified few lines below.
 4)Set up cron for automatic running.
 This was tested on Python 3 only and requires requests.
 
+Modified version by:
+Copyright (c) 2023 Jan Chaloupka <osobni@janchaloupka.cz>
+https://github.com/janchaloupka/wedos-ddns
 
 Modified version by:
 Copyright (c) 2020 Marek Vach <mvach@email.cz>
@@ -48,12 +51,25 @@ import socket
 import requests
 
 import urllib.request
+import os
 
-# Change these!
-LOGIN = 'user@example.com' #CASE SENSITIVE!
-PASSWORD = 'passW0rd!' # by Wedos requirments must contain at least one upper case and one special symbol
-DOMAIN = 'example.com' # 'example.com' - must be already existing A record!
-SUBDOMAIN = 'subdomain' # Empty string in case of changing 2nd level domain name or subdomain - also existing A record
+# Set Docker environment variables to set these!
+
+# CASE SENSITIVE!
+# Example: 'user@example.com'
+LOGIN = os.environ.get('LOGIN')
+
+# By Wedos requirements must contain at least one upper case and one special symbol
+# Example: 'passW0rd!'
+PASSWORD = os.environ.get('PASSWORD')
+
+# The A record for this domain must already exist!
+# Example: 'example.com'
+DOMAIN = os.environ.get('DOMAIN')
+
+# Leave empty if you want to change 2nd level domain name
+# Example: 'subdomain'
+SUBDOMAIN = os.environ.get('SUBDOMAIN') or ''
 
 # Keep this
 API = 'https://api.wedos.com/wapi/json'
