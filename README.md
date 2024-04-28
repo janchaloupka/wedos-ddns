@@ -20,11 +20,11 @@ Parametry se zadávají jako proměnné prostředí při vytváření nebo spou�
 ### Příklady spuštění
 1. Dynamické nastavení IP adresu A záznamu na doméně `subdomain.example.com`
 
-`docker run -it --rm janch32/wedos-ddns -e LOGIN=user@example.com -e PASSWORD=passW0rd! -e DOMAIN=example.com -e SUBDOMAIN=subdomain`
+`docker run -it --rm -e LOGIN=user@example.com -e PASSWORD=passW0rd! -e DOMAIN=example.com -e SUBDOMAIN=subdomain janch32/wedos-ddns`
 
 2. Dynamické nastavení IP adresu A záznamu na doméně `example.com`
 
-`docker run -it --rm janch32/wedos-ddns -e LOGIN=user@example.com -e PASSWORD=passW0rd! -e DOMAIN=example.com`
+`docker run -it --rm -e LOGIN=user@example.com -e PASSWORD=passW0rd! -e DOMAIN=example.com janch32/wedos-ddns`
 
 ## Automatické spouštění skriptu
 1. otevřeme správce úloh ```$ crontab -e```
